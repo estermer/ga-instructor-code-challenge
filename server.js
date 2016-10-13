@@ -11,6 +11,10 @@ app.use(bodyParser.json());
 ///missing a ) at the end and a / before public
 //code is redundant and not needed
 // app.use('/', express.static(path.join(__dirname, 'public'));
+//needs a home route
+app.get('/', function(req, res){
+
+});
 
 app.get('/favorites', function(req, res){
   var data = fs.readFileSync('./data.json');
