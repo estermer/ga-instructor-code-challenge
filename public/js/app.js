@@ -14,20 +14,26 @@ window.onload = function(){
     xhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
 
+  //create display for the movies
+  var displayMovies = function(movie){
+
+  };
+
 
   //search event listener callback
   var searchCallback = function(){
-    
+
     //value of searched option
     var query = document.getElementsByName('search-movies')[0].value;
 
     //send the request to the OMDbapi
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText);
+        console.log(this.response.Title);
       }
     };
-    xhttp.open('GET', 'http://www.omdbapi.com/?t=' + query + '&y=&plot=short&r=json', true)
+    xhttp.open('GET', 'http://www.omdbapi.com/?t=' + query + '&y=&plot=short&r=json', true);
+    xhttp.responseType = 'json';
     xhttp.send();
 
   };
