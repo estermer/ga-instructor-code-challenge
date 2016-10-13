@@ -11,9 +11,9 @@ app.use(bodyParser.json());
 ///missing a ) at the end and a / before public
 //code is redundant and not needed
 // app.use('/', express.static(path.join(__dirname, 'public'));
-//needs a home route
+//needs a home route to search for movies
 app.get('/', function(req, res){
-
+  res.render('index.html');
 });
 
 app.get('/favorites', function(req, res){
