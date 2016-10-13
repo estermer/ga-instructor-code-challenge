@@ -16,7 +16,7 @@ window.onload = function(){
 
   //create display for the movies
   var displayMovies = function(movie){
-
+    
   };
 
 
@@ -30,6 +30,7 @@ window.onload = function(){
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         console.log(this.response.Title);
+        displayMovies(this.response);
       }
     };
     xhttp.open('GET', 'http://www.omdbapi.com/?t=' + query + '&y=&plot=short&r=json', true);
