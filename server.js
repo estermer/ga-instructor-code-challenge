@@ -18,7 +18,8 @@ app.get('/favorites', function(req, res){
   res.send(data);
 });//}) was missing on this line
 
-app.get('/favorites', function(req, res){// '/' was missing in the path
+//when writing files to a datastore or db use a post route
+app.post('/favorites', function(req, res){// '/' was missing in the path
   if(!req.body.name || !req.body.oid){
     res.send("Error");
   }//if statement was missing closing curly brackets }
