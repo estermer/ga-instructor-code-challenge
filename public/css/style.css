@@ -1,3 +1,51 @@
+body {
+  /*font-family: 'Bungee Shade', cursive;
+  font-family: 'Bungee', cursive;*/
+  background-color: #6C7A89;
+}
+
+.search-field {
+  width: 380px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+  padding: 5px;
+  background-color: #2C3E50;
+  border-radius: 5px;
+}
+
+[name=search-movies] {
+  width: 300px;
+  border-radius: 5px;
+}
+
+#movie-display {
+  width: 450px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #2C3E50;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  font-family: 'Bungee', cursive;
+  font-size: 12px;
+}
+
+.movie-title {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 30px;
+  color: black;
+}
+
+img {
+  height: 300px;
+}
+
+#search-button {
+  font-family: 'Bungee', cursive;*/
+}
+
 #favorite-button {
   display: none;
 }
