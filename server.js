@@ -33,6 +33,7 @@ app.post('/favorites', function(req, res){// '/' was missing in the path
     fs.writeFile('./data.json', JSON.stringify(data));
     res.setHeader('Content-Type', 'application/json');
     res.send(data);
+    console.log(req.body);
   }
 });
 
