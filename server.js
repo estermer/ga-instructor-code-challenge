@@ -45,6 +45,6 @@ app.post('/favorites', function(req, res){// '/' was missing in the path
   // }
 });
 
-app.listen(3000, function(){// forgot to finish spelling list to listen
+app.listen(process.env.PORT || 3000, function(){// forgot to finish spelling list to listen
   console.log("Listening on port 3000");
 });
