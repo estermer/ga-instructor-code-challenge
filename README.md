@@ -6,7 +6,7 @@ The server code provided in Node.JS contained errors that I first corrected and 
 comments on how each error was corrected.
 
 [OMDBapi](http://www.omdbapi.com/) 
-The external API used for the move data
+is the external API used for the movie data.
 
 ##Movie Search
 
