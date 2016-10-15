@@ -4,6 +4,10 @@ window.onload = function(){
   //create search button to add an event listener on it
   var searchButton = document.getElementById('search-button');
   var favoriteButton = document.getElementById('favorite-button');
+  var viewFavoritesButton = document.getElementById('view-favorites');
+  var movieDisplay = document.getElementById('movie-display');
+  var searchDisplay = document.getElementsByClassName('search-field')[0];
+  var returnHomeButton = document.getElementById('home-button');
 
   //variable for the currently displayed movies data
   var currentlyDisplayedMovie = "hi i work";
@@ -32,11 +36,7 @@ window.onload = function(){
 
 
   /*****************DOM MANIPULATOR FUNCTIONS*******************/
-  var displayMovie = function(movie){
-
-    //clear any previous search
-    document.getElementById('movie-display').innerHTML = '';
-
+  var createMovieCard = function(movie){
     //create movie card element
     var movieCard = document.createElement('div');
     movieCard.setAttribute('class', 'movie');
@@ -49,14 +49,77 @@ window.onload = function(){
     //add the movieCard all together
     movieCard.innerHTML = title + release + poster + director + genre;
 
+    return movieCard;
+  };
+
+  var displayFavorites = function(favorites){
+    //clear search field and other buttons
+    searchDisplay.style.display = 'none';
+    viewFavoritesButton.style.display = 'none';
+    favoriteButton.style.display = 'none';
+
+    // add return to search button
+    returnHomeButton.style.display = 'inline-block';
+
+    for(var i = 0; i < favorites.length; i++){
+      var movieCard = createMovieCard(favorites[i]);
+      //append moviecard to the display
+      movieDisplay.appendChild(movieCard);
+    }
+  };
+
+  var displayMovie = function(movie){
+
+    //clear any previous search
+    movieDisplay.innerHTML = '';
+
+    //create movie card element
+    var movieCard = createMovieCard(movie);
+
     //append moviecard to the display
-    document.getElementById('movie-display').appendChild(movieCard);
+    movieDisplay.appendChild(movieCard);
 
   };
   /*****************DOM MANIPULATOR FUNCTIONS*******************/
 
 
   /*****************EVENT LISTENER CALLBACKS*******************/
+  var returnHomeCallback = function(){
+    //show search field and other buttons
+    searchDisplay.style.display = 'block';
+    viewFavoritesButton.style.display = 'inline-block';
+
+    // hide return to search button
+    returnHomeButton.style.display = 'none';
+
+    //clear display
+    movieDisplay.innerHTML = '';
+    movieDisplay.style.display = 'none';
+  };
+
+  var viewFavoritesCallback = function(){
+
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log('SUCCESS');
+        console.log(this.response);
+        //show a courtesy message if no movies are favorited yet
+        if(this.response.length === 0){
+          movieDisplay.style.display = 'block';
+          movieDisplay.innerHTML = '<h1 class="movie-title"> YOU HAVE NO FAVORITE MOVIES YET :) </h1>';
+        } else {
+          movieDisplay.style.display = 'block';
+          movieDisplay.innerHTML = '';
+          displayFavorites(this.response);
+        }
+      }
+    };
+    xhttp.open('GET', '/favorites', true);
+    xhttp.responseType = 'json';
+    xhttp.send();
+
+  };
+
   var favoriteCallback = function(){
     var movie = getCurrentlyDisplayedMovie();
 
@@ -82,6 +145,7 @@ window.onload = function(){
 
 
   var searchCallback = function(){
+    movieDisplay.style.display = 'block';
 
     //value of searched option
     var query = document.getElementsByName('search-movies')[0];
@@ -95,10 +159,8 @@ window.onload = function(){
           displayMovie(this.response);
           setCurrentlyDisplayedMovie(this.response);
         } else {
-          document.getElementById('movie-display').innerHTML = '<h1 class="movie-title"> Please Try Again :) </h1>';
+          movieDisplay.innerHTML = '<h1 class="movie-title"> Please Try Again :) </h1>';
         }
-
-        // favoriteButton.value = JSON.stringify(createMovieParameters(this.response));
       }
     };
     xhttp.open('GET', 'http://www.omdbapi.com/?t=' + query.value + '&y=&plot=short&r=json', true);
@@ -117,4 +179,6 @@ window.onload = function(){
   //event listener when user hits search button
   searchButton.addEventListener('click', searchCallback);
   favoriteButton.addEventListener('click', favoriteCallback);
+  viewFavoritesButton.addEventListener('click', viewFavoritesCallback)
+  returnHomeButton.addEventListener('click', returnHomeCallback);
 };
