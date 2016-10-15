@@ -5,6 +5,9 @@ This project's front end was completed using Vanilla JS, XMLHttpRequest, HTML, a
 The server code provided in Node.JS contained errors that I first corrected and provided
 comments on how each error was corrected.
 
+[OMDBapi](http://www.omdbapi.com/) 
+The external API used for the move data
+
 ##Movie Search
 
 Here is a link to the deployed app on Heroku: http://ia-movie-searcher.herokuapp.com/
