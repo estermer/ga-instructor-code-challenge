@@ -5,7 +5,7 @@
     <title>GA Instructor Code Challenge :: Eric Stermer</title>
     <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css" media="screen" title="no title">
-    <script src="/js/app.js" charset="utf-8"></script>
+    <script src="/js/search.js" charset="utf-8"></script>
   </head>
   <body>
 
@@ -15,12 +15,13 @@
       <button id="search-button" type="button">SEARCH</button>
     </div>
 
-    <div id="movie-display"></div>
-
     <!--Form to add movie to favorites-->
-    <!-- <form action="/favorites" method="POST">
-        <button id="favorite-button" type="submit">ADD TO FAVORITES</button>
-    </form> -->
+    <div class="favorite-button">
+      <button id="favorite-button">ADD TO FAVORITES</button>
+    </div>
+
+    <!-- display serched movie -->
+    <div id="movie-display"></div>
 
   </body>
 </html>

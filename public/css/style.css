@@ -20,7 +20,6 @@ body {
 #movie-display {
   width: 450px;
   margin: 0 auto;
-  margin-top: 20px;
   padding: 10px;
   background-color: #2C3E50;
   border-radius: 5px;
@@ -41,9 +40,17 @@ img {
 }
 
 #search-button {
-  font-family: 'Bungee', cursive;*/
+  font-family: 'Bungee', cursive;
+  border-radius: 5px;
+}
+
+.favorite-button {
+  text-align: center;
+  margin: 20px;
 }
 
 #favorite-button {
   display: none;
+  font-family: 'Bungee', cursive;
+  border-radius: 5px;
 }

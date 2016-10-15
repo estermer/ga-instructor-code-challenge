@@ -1,11 +1,12 @@
 window.onload = function(){
 
+  /*****************VARIABLES / SETTERS / GETTERS*******************/
   //create search button to add an event listener on it
   var searchButton = document.getElementById('search-button');
   var favoriteButton = document.getElementById('favorite-button');
 
   //variable for the currently displayed movies data
-  var currentlyDisplayedMovie;
+  var currentlyDisplayedMovie = "hi i work";
 
   //Added AJAX request object
   var xhttp;
@@ -18,7 +19,19 @@ window.onload = function(){
     xhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
 
-  ///create display for the movies///
+  //set currentlyDisplayedMovie
+  var setCurrentlyDisplayedMovie = function(movie){
+    currentlyDisplayedMovie = movie;
+  };
+
+  //get currentlyDisplayedMovie
+  var getCurrentlyDisplayedMovie = function(){
+    return currentlyDisplayedMovie;
+  };
+  /*****************VARIABLES / SETTERS / GETTERS*******************/
+
+
+  /*****************DOM MANIPULATOR FUNCTIONS*******************/
   var displayMovie = function(movie){
 
     //clear any previous search
@@ -30,7 +43,7 @@ window.onload = function(){
     var title = '<h1 class="movie-title">' + movie.Title + '</h1>';
     var release = '<h2 class="movie-release">Released: ' + movie.Released + '</h2>';
     var poster = '<img src="' + movie.Poster + '"><br>';
-    var genre = '<h3 class="movie-genre"> Genre: ' + movie.Genre + ' Rating: ' + movie.Rated + '</h3>';
+    var genre = '<h3 class="movie-genre"> Genre: ' + movie.Genre + ' | Rating: ' + movie.Rated + '</h3>';
     var director = '<h3 class="movie-director"> Directed By: ' + movie.Director + '</h3>';
 
     //add the movieCard all together
@@ -40,41 +53,34 @@ window.onload = function(){
     document.getElementById('movie-display').appendChild(movieCard);
 
   };
+  /*****************DOM MANIPULATOR FUNCTIONS*******************/
 
 
-  //function to create POST params of the movie data
-  var createMovieParameters = function(movie){
+  /*****************EVENT LISTENER CALLBACKS*******************/
+  var favoriteCallback = function(){
+    var movie = getCurrentlyDisplayedMovie();
+
     var title = 'Title=' + movie.Title;
     var release = '&Released=' + movie.Released;
-    var rating = '&Rated=' + movie.Rated;
     var poster = '&Poster=' + movie.Poster;
     var genre = '&Genre=' + movie.Genre;
     var director = '&Director=' + movie.Director;
+    var rating = '&Rated=' + movie.Rated;
 
-    return title + release + rating + poster + genre + director;
+    var data = title + release + poster + genre + director + rating;
+
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(xhttp.response);
+      }
+    };
+
+    xhttp.open('POST', '/favorites');
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(data);
   };
 
-  ///favorite event listener callback///
-  // var favoriteCallback = function(){
-  //
-  //   //send the data to data store
-  //   xhttp.onreadystatechange = function() {
-  //     if (this.readyState == 4 && this.status == 200) {
-  //       //diplay the movie to the DOM
-  //       console.log("Success! Movie added to your favorites!");
-  //       console.log(currentlyDisplayedMovie);
-  //       console.log(this.response);
-  //     }
-  //   };
-  //   xhttp.open('POST', 'http://localhost:3000/favorites', true);
-  //   //Send the proper header information along with the request
-  //   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  //   xhttp.send(currentlyDisplayedMovie);
-  //
-  // };
 
-
-  ///search event listener callback///
   var searchCallback = function(){
 
     //value of searched option
@@ -87,11 +93,12 @@ window.onload = function(){
         if(this.response.Title !== undefined){
           //diplay the movie to the DOM
           displayMovie(this.response);
+          setCurrentlyDisplayedMovie(this.response);
         } else {
           document.getElementById('movie-display').innerHTML = '<h1 class="movie-title"> Please Try Again :) </h1>';
         }
 
-        // favoriteButton.value = createMovieParameters(this.response);
+        // favoriteButton.value = JSON.stringify(createMovieParameters(this.response));
       }
     };
     xhttp.open('GET', 'http://www.omdbapi.com/?t=' + query.value + '&y=&plot=short&r=json', true);
@@ -104,10 +111,10 @@ window.onload = function(){
     //display favorite button
     favoriteButton.style.display = 'inline-block';
   };
+  /*****************EVENT LISTENER CALLBACKS*******************/
 
 
   //event listener when user hits search button
   searchButton.addEventListener('click', searchCallback);
-  //event listener for favorite button
-  // favoriteButton.addEventListener('click', favoriteCallback);
+  favoriteButton.addEventListener('click', favoriteCallback);
 };
