@@ -6,6 +6,9 @@ The server code provided in Node.JS contained errors that I first corrected and 
 comments on how each error was corrected.
 
 ##Movie Search
+
+Here is a link to the deployed app on Heroku: http://ia-movie-searcher.herokuapp.com/
+
 This single page app allows a user to search for any movie of his choice.
 
 It will display the movies information including the title, director, rating, genre, and the movies poster.
