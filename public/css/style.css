@@ -55,6 +55,9 @@ img {
   text-align: center;
   margin: 20px;
 }
+.favorite-button  > button{
+  margin: 5px;
+}
 
 #favorite-button {
   display: none;
