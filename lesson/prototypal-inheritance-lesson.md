@@ -23,3 +23,7 @@ There are all different kinds of cars: Honda's, Toyotas, Fords, Chevys.
 Yet there are different things that each car has in common: 4 wheels, engine, mufflers, fuel type, etc.
 
 ![car parts](https://www.easypacelearning.com/design/images/carparts.jpg)
+
+As coders, we are always looking for ways to DRY up our code. Prototypal inheritance is one way which we can do this.
+
+
