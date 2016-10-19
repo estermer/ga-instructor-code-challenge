@@ -1,4 +1,4 @@
-# JavaScript Protoypal Inheritance
+# JavaScript Prototypal Inheritance
 
 ### Student Objectives
 - Demonstrate a use case for prototypal inheritance
