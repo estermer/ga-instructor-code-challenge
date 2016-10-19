@@ -18,8 +18,8 @@ When thinking about prototypal inheritance, I think of cars.
 
 There are all different kinds of cars: Honda's, Toyotas, Fords, Chevys.
 
-!(car brands)[http://images.thetruthaboutcars.com/2011/07/car-logos.jpg]
+![car brands](http://images.thetruthaboutcars.com/2011/07/car-logos.jpg)
 
 Yet there are different things that each car has in common: 4 wheels, engine, mufflers, fuel type, etc.
 
-!(car parts)[https://www.easypacelearning.com/design/images/carparts.jpg]
+![car parts](https://www.easypacelearning.com/design/images/carparts.jpg)
