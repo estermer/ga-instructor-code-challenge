@@ -92,3 +92,18 @@ var blueMustang = new Mustang('blue');
 
 blueMustang.makeSound();
 ```
+
+So what is going on here?
+
+First we have our `Car` and `Mustang` constructor functions and we are creating a instance of `Mustang` called `blueMustang` which we are setting the color of blue as an argument.
+
+But, we called `makeSound()` on our blue mustang even though it doesn't contain the `makeSound()` function in it. Yet, we should still see in our console "vrooooom!" logged because of the Prototype Chain.
+
+When we set `Mustang.prototype` to `Object.create(Car.prototype)` we are creating a new Object based on the "Car"'s prototype and setting it to the "Mustang"'s prototype creating a chain of dependencies.
+
+When we called `blueMustang.makeSound()`, JavaScript was looking in the `Mustang` object first to see if `makeSound()` is there, if not then it checks the parent prototype for `makeSound()` which we set as `Car`. JavaScript sees that `makeSound()` resides in `Car` and calls it.
+
+### Conclusion - 1 min
+
+1. What other examples can you come up with where we could use prototypal inheritance?
+2. Do you see prototypal inheritance providing greater flexability and structure to your code?
