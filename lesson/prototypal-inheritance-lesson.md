@@ -14,7 +14,9 @@ before this lesson, students should know about:
 
 ### Intro - 2 mins
 
-Let's review what an object is. Objects can be anything. Take cars for example.
+To start let's take a moment to generally review what an object is.
+
+Objects can be anything. Take cars for example.
 
 There are all different kinds of cars: Honda's, Toyotas, Fords, Chevys.
 
